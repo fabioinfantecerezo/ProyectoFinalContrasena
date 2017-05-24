@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -258,6 +259,11 @@ public class MainView extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/passwordkeeper/submit.png"))); // NOI18N
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -368,6 +374,11 @@ public class MainView extends javax.swing.JFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/passwordkeeper/submit.png"))); // NOI18N
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -483,6 +494,36 @@ public class MainView extends javax.swing.JFrame {
     private void jPasswordField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        String password, identificador, descripcion;
+        password=jPasswordField1.getText();
+        identificador=jTextPane1.getText();
+        descripcion=jTextArea1.getText();
+        
+        PasswordKeeper.getMc().anadeContrasena(identificador, password, descripcion);
+      
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        String password, password_nueva, password_nueva_repeat;
+        password=jPasswordField4.getText();
+        password_nueva=jPasswordField2.getText();
+        password_nueva_repeat=jPasswordField3.getText();
+        
+        if(PasswordKeeper.getMu().obtieneContrasenia().equals(password)&&password_nueva.equals(password_nueva_repeat)){
+            
+                PasswordKeeper.getMu().modificaContrasenia(password_nueva);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
