@@ -25,9 +25,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
 
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/key-icon-17.png"));
-        this.setIconImage(icon);
-
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 

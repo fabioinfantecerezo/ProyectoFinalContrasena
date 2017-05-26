@@ -37,28 +37,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
 
         UIManager.put("TabbedPane.selected", new Color(78, 0, 78));
-        //UIManager.put("TabbedPane.Background", Color.black);
-
-        /*DefaultTableModel model = new DefaultTableModel(); 
-        JTable jTable1 = new JTable(model); 
-       
         
-        
-        
-        Image icon= Toolkit.getDefaultToolkit().getImage(getClass().getResource("/key-icon-17.png"));
-        this.setIconImage(icon);
-        
-        
-        
-        
-
-        // Create a couple of columns 
-        model.addColumn("Identificador"); 
-        model.addColumn("Clave"); 
-        model.addColumn("Descripción");
-
-        // Append a row 
-        model.addRow(new Object[]{"v1", "v2", "v3"});*/
         initComponents();
 
         actualiza_tabla();
