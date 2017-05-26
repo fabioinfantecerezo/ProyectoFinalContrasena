@@ -11,13 +11,17 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import modelo.AaClave;
 
 /**
  *
@@ -25,39 +29,85 @@ import javax.swing.table.JTableHeader;
  */
 public class MainView extends javax.swing.JFrame {
 
+    private int count = 0;
+
     /**
      * Creates new form MainView
      */
     public MainView() {
-        
-        UIManager.put("TabbedPane.selected",new Color(78, 0, 78));
+
+        UIManager.put("TabbedPane.selected", new Color(78, 0, 78));
         //UIManager.put("TabbedPane.Background", Color.black);
-        
+
+        /*DefaultTableModel model = new DefaultTableModel(); 
+        JTable jTable1 = new JTable(model); 
        
         
-        initComponents();
+        
         
         Image icon= Toolkit.getDefaultToolkit().getImage(getClass().getResource("/key-icon-17.png"));
-        this.setIconImage(icon);  
+        this.setIconImage(icon);
         
-        JTableHeader table_head=jTable1.getTableHeader();
+        
+        
+        
+
+        // Create a couple of columns 
+        model.addColumn("Identificador"); 
+        model.addColumn("Clave"); 
+        model.addColumn("Descripción");
+
+        // Append a row 
+        model.addRow(new Object[]{"v1", "v2", "v3"});*/
+        initComponents();
+
+        actualiza_tabla();
+
+        JTableHeader table_head = jTable1.getTableHeader();
         table_head.setBackground(Color.white);
         table_head.setForeground(Color.black);
-        Font aux= new Font("Century Gothic",Font.PLAIN,18);
+        Font aux = new Font("Century Gothic", Font.PLAIN, 18);
         table_head.setFont(aux);
-        
+
         jTable1.setRowHeight(40);
-                  Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
-        
-        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+
         jTabbedPane1.setBackgroundAt(0, Color.black);
         jTabbedPane1.setForeground(Color.white);
         jTabbedPane1.setBackgroundAt(1, Color.black);
         jTabbedPane1.setBackgroundAt(2, Color.black);
-        
+
+    }
+
+    public void actualiza_tabla() {
+
+        if (count == 0) {
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            ArrayList<AaClave> array_aux = PasswordKeeper.getMc().listadoClaves();
+
+            for (int i = 0; i < array_aux.size(); i++) {
+                String[] datos = {array_aux.get(i).getAplicacion(), array_aux.get(i).getContrasena(), array_aux.get(i).getDescripcion()};
+                modelo.addRow(datos);
+            }
+
+            count = array_aux.size() - 1;
+        } else {
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            ArrayList<AaClave> array_aux = PasswordKeeper.getMc().listadoClaves();
+
+            for (int i = count; i < array_aux.size(); i++) {
+
+                String[] datos = {array_aux.get(i).getAplicacion(), array_aux.get(i).getContrasena(), array_aux.get(i).getDescripcion()};
+                modelo.addRow(datos);
+
+            }
+
+            count = array_aux.size() - 1;
+
+        }
+
     }
 
     /**
@@ -497,30 +547,31 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         String password, identificador, descripcion;
-        password=jPasswordField1.getText();
-        identificador=jTextPane1.getText();
-        descripcion=jTextArea1.getText();
-        
+        password = jPasswordField1.getText();
+        identificador = jTextPane1.getText();
+        descripcion = jTextArea1.getText();
+
         PasswordKeeper.getMc().anadeContrasena(identificador, password, descripcion);
-      
-        
+
+        actualiza_tabla();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
         String password, password_nueva, password_nueva_repeat;
-        password=jPasswordField4.getText();
-        password_nueva=jPasswordField2.getText();
-        password_nueva_repeat=jPasswordField3.getText();
-        
-        if(PasswordKeeper.getMu().obtieneContrasenia().equals(password)&&password_nueva.equals(password_nueva_repeat)){
-            
-                PasswordKeeper.getMu().modificaContrasenia(password_nueva);
-        }
-        else{
+        password = jPasswordField4.getText();
+        password_nueva = jPasswordField2.getText();
+        password_nueva_repeat = jPasswordField3.getText();
+
+        if (PasswordKeeper.getMu().obtieneContrasenia().equals(password) && password_nueva.equals(password_nueva_repeat)) {
+
+            PasswordKeeper.getMu().modificaContrasenia(password_nueva);
+        } else {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
