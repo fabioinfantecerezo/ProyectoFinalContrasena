@@ -37,7 +37,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
 
         UIManager.put("TabbedPane.selected", new Color(78, 0, 78));
-        
+
         initComponents();
 
         actualiza_tabla();
@@ -61,31 +61,16 @@ public class MainView extends javax.swing.JFrame {
     }
 
     public void actualiza_tabla() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
-        if (count == 0) {
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-            ArrayList<AaClave> array_aux = PasswordKeeper.getMc().listadoClaves();
-
-            for (int i = 0; i < array_aux.size(); i++) {
-                String[] datos = {array_aux.get(i).getAplicacion(), array_aux.get(i).getContrasena(), array_aux.get(i).getDescripcion()};
-                modelo.addRow(datos);
-            }
-
-            count = array_aux.size() - 1;
-        } else {
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-            ArrayList<AaClave> array_aux = PasswordKeeper.getMc().listadoClaves();
-
-            for (int i = count; i < array_aux.size(); i++) {
-
-                String[] datos = {array_aux.get(i).getAplicacion(), array_aux.get(i).getContrasena(), array_aux.get(i).getDescripcion()};
-                modelo.addRow(datos);
-
-            }
-
-            count = array_aux.size() - 1;
-
-        }
+        String[] datos = {"carlos@gmail.com", "Caralibro", "EL FAcebook"};
+        modelo.addRow(datos);
+        String[] datos1 = {"carlos@alu.uhu.es", "uhu1234", "Universidad"};
+        modelo.addRow(datos1);
+        String[] datos2 = {"carlo@gmail.com", "12345", "Correo de gmail"};
+        modelo.addRow(datos2);
+        String[] datos3 = {"carlos@yahoo.com", "mipass", "correo de yahoo"};
+        modelo.addRow(datos3);
 
     }
 
@@ -245,24 +230,17 @@ public class MainView extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTextPane1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(0, 0, 0));
         jTextPane1.setAutoscrolls(false);
         jScrollPane2.setViewportView(jTextPane1);
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField1MouseClicked(evt);
@@ -352,10 +330,7 @@ public class MainView extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nueva Contraseña:");
 
-        jPasswordField2.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField2.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPasswordField2.setText("jPasswordField1");
         jPasswordField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField2MouseClicked(evt);
@@ -371,10 +346,7 @@ public class MainView extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Repetir Contraseña:");
 
-        jPasswordField3.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField3.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPasswordField3.setText("jPasswordField1");
         jPasswordField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField3MouseClicked(evt);
@@ -386,10 +358,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField4.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField4.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPasswordField4.setText("jPasswordField1");
         jPasswordField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField4MouseClicked(evt);
@@ -413,11 +382,10 @@ public class MainView extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(221, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel9)
@@ -426,8 +394,11 @@ public class MainView extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(143, 143, 143))
+                            .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(349, 349, 349))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,9 +415,9 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         jTabbedPane1.addTab("Cambiar Contraseña Acceso", jPanel5);
@@ -526,33 +497,47 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (!jTextPane1.getText().equals("")) {
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            String password, identificador, descripcion;
+            password = jPasswordField1.getText();
+            identificador = jTextPane1.getText();
+            descripcion = jTextArea1.getText();
 
-        String password, identificador, descripcion;
-        password = jPasswordField1.getText();
-        identificador = jTextPane1.getText();
-        descripcion = jTextArea1.getText();
+            String[] datos = {identificador, password, descripcion};
+            modelo.addRow(datos);
 
-        PasswordKeeper.getMc().anadeContrasena(identificador, password, descripcion);
-
-        actualiza_tabla();
+            JOptionPane.showMessageDialog(null, "Contraseña Añadida Correctamente");
+            jPasswordField1.setText("");
+            jTextPane1.setText("");
+            jTextArea1.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Relleno los campos!");
+        }
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        if (jPasswordField4.getText().equals(Login.passLogin)) {
+            String password_nueva, password_nueva_repeat;
 
-        String password, password_nueva, password_nueva_repeat;
-        password = jPasswordField4.getText();
-        password_nueva = jPasswordField2.getText();
-        password_nueva_repeat = jPasswordField3.getText();
-
-        if (PasswordKeeper.getMu().obtieneContrasenia().equals(password) && password_nueva.equals(password_nueva_repeat)) {
-
-            PasswordKeeper.getMu().modificaContrasenia(password_nueva);
+            password_nueva = jPasswordField2.getText();
+            password_nueva_repeat = jPasswordField3.getText();
+            if (password_nueva.equals(password_nueva_repeat)) {
+                Login.passLogin = password_nueva;
+                PasswordKeeper.cambiavista(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "Las contraseñas deben coincidir");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            JOptionPane.showMessageDialog(null, "Contraseña actual erronea");
         }
+        jPasswordField4.setText("");
+        jPasswordField2.setText("");
+        jPasswordField3.setText("");
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

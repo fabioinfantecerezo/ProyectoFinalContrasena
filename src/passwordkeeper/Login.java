@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author usuario
  */
 public class Login extends javax.swing.JFrame {
-
+static String passLogin ="admin";
     /**
      * Creates new form Login
      */
@@ -238,12 +238,9 @@ public class Login extends javax.swing.JFrame {
 
         String pass_aux = jPasswordField1.getText();
         
-        if(pass_aux.equals("admin")){
+        if(pass_aux.equals(passLogin)){
              PasswordKeeper.cambiavista(1);
-        }
-        else if (pass_aux.equals(PasswordKeeper.getMu().obtieneContrasenia())) {
-            PasswordKeeper.cambiavista(1);
-        }
+        }        
         else {
             JOptionPane.showMessageDialog(null, "Contraseña erronea");
         }
